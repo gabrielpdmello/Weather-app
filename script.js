@@ -11,39 +11,37 @@ const unit = document.querySelector(".unit")
 const loading = document.querySelector(".loading");
 
 
-function getLocationTemp(city){
+async function getLocationTemp(city){
     loading.classList.remove("hide");
 
-    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=WSTTFR7JHD25RXA4U5PVLCKWJ`, {mode: 'cors'})
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(response) {
-        resolvedAddress.textContent = `${response.resolvedAddress}`;
-        conditions.textContent = `${response.currentConditions.conditions}`;
-        if (unit.value === "fahrenheit") {
-            temp.textContent = `Temperature: ${response.currentConditions.temp}° F`;
-            minmaxtemp.textContent = `${response.days[0].tempmin} | ${response.days[0].tempmax}° F`;
-        } else {
-            temp.textContent = `Temperature: ${Math.round((response.currentConditions.temp -32) / 1.8 * 10) / 10}° C`;
-            minmaxtemp.textContent = `${Math.round((response.days[0].tempmin -32) / 1.8 * 10) / 10}° | ${Math.round((response.days[0].tempmax -32) / 1.8 * 10) / 10}° C`;
-        }
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=WSTTFR7JHD25RXA4U5PVLCKWJ`, {mode: 'cors'});
 
-        body.removeAttribute("class");
+    const weatherData = await response.json();
 
-        if (response.currentConditions.temp > 86) {
-            body.classList.add("hot");
-        } else if (response.currentConditions.temp > 59) {
-            body.classList.add("warm");
-        } else if (response.currentConditions.temp > 41) {
-            body.classList.add("cold");
-        } else {
-            body.classList.add("ice-cold");
-        }
+    resolvedAddress.textContent = `${weatherData.resolvedAddress}`;
+    conditions.textContent = `${weatherData.currentConditions.conditions}`;
+    if (unit.value === "fahrenheit") {
+        temp.textContent = `Temperature: ${weatherData.currentConditions.temp}° F`;
+        minmaxtemp.textContent = `${weatherData.days[0].tempmin} | ${weatherData.days[0].tempmax}° F`;
+    } else {
+        temp.textContent = `Temperature: ${Math.round((weatherData.currentConditions.temp -32) / 1.8 * 10) / 10}° C`;
+        minmaxtemp.textContent = `${Math.round((weatherData.days[0].tempmin -32) / 1.8 * 10) / 10}° | ${Math.round((weatherData.days[0].tempmax -32) / 1.8 * 10) / 10}° C`;
+    }
 
-        loading.classList.add("hide");
-        weatherResults.classList.remove("hide");
-    })
+    body.removeAttribute("class");
+
+    if (weatherData.currentConditions.temp > 86) {
+        body.classList.add("hot");
+    } else if (weatherData.currentConditions.temp > 59) {
+        body.classList.add("warm");
+    } else if (weatherData.currentConditions.temp > 41) {
+        body.classList.add("cold");
+    } else {
+        body.classList.add("ice-cold");
+    }
+
+    loading.classList.add("hide");
+    weatherResults.classList.remove("hide");
 }
 
 submitBtn.addEventListener("click", () => {
