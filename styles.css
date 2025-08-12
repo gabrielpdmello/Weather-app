@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+}
+
+body {
+    background-color: white;
+}
+
+.main {
+    background-color: white;
+    width: 60%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 2rem;
+    box-shadow: 0 0 1rem 1rem white;
+}
+
+h1 {
+  width: min-content;
+  text-wrap: nowrap;
+  margin: 0 auto 3rem auto;
+  font-size: 3rem;
+}
+
+form {
+    margin: 0 auto 3rem auto;
+    padding: 2rem;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+label {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 2rem auto;
+}
+
+input {
+    width: 20rem;
+    display: block;
+    margin: 0 auto 2rem auto;
+}
+
+button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    background-color: lightblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button[type="submit"]:active {
+    border: 1px solid rgba(255, 255, 255, 0);
+
+}
+
+.input-title {
+    text-align: center;
+    display: block;
+}
+
+.weather-results {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin: 0 auto 3rem auto;
+    padding: 2rem;
+    box-shadow: 0 0 1.4rem 0.5rem gray;
+
+}
+
+.temp {
+    display: block;
+}
+
+.minmaxtemp {
+    display: block;
+}
+
+.conditions {
+    display: block;
+}
+
+.hot {
+    background-color: orangered;
+}
+
+.warm {
+    background-color: yellow;
+}
+
+.cold {
+    background-color: lightblue;
+}
+
+.ice-cold {
+    background-color: blue;
+}
+
+.loading {
+    display: block;
+    margin: 0 auto;
+    
+}
+
+.hide {
+    display: none;
+}

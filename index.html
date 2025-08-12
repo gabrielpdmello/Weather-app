@@ -4,10 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <div class="main">
+        <h1>Weather app</h1>
+        <form onsubmit="return false">
+            <label>
+                <span class="input-title">Type the location you wish to see the weather of:</span>
+                <input type="text" required>
+            </label>
+            <label>
+                <span>Unit of Temperature:</span>
+                <select class="unit">
+                    <option value="celsius" selected>Celsius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                </select>
+            </label>
+            <button type="submit">Get temp</button>
+        </form>
+        <div class="weather-results hide">
+            <h2 class="resolved-address"></h2>
+            <span class="temp"></span>
+            <span class="minmaxtemp"></span>
+            <span class="conditions"></span>
+        </div>
+        <img class="loading hide" src="assets/Sun-ezgif.com-crop.gif">
+    </div>
 </body>
 </html>
